@@ -1063,16 +1063,18 @@ def build_home():
     html += f"""
   <main id="main">
     <section class="hero">
-      <div class="hero-media">
-        {picture("edd-swing-creme-leather", "Man swinging a golf club in a Birdeon navy tartan polo, cream shorts and cream cap on a palm-lined course", p, lazy=False)}
-      </div>
-      <div class="wrap hero-content">
-        <p class="eyebrow">Golf apparel, coming soon</p>
-        <h1>Colour on the course.</h1>
-        <p class="lead">Birdeon is a new golf apparel label with three catalogues — tartan, winter layers and bright plain colour — for golfers in Australia, the Philippines and Taiwan.</p>
-        <div class="hero-actions">
-          <a class="btn btn-orange" href="#catalogues">Explore the catalogues</a>
-          <button class="btn btn-ghost" type="button" data-open-notify>Notify me</button>
+      <div class="wrap hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow">Golf apparel, coming soon</p>
+          <h1>Colour on the course.</h1>
+          <p class="lead">Birdeon is a new golf apparel label with three catalogues — tartan, winter layers and bright plain colour — for golfers in Australia, the Philippines and Taiwan.</p>
+          <div class="hero-actions">
+            <a class="btn btn-orange" href="#catalogues">Explore the catalogues</a>
+            <button class="btn btn-ghost" type="button" data-open-notify>Notify me</button>
+          </div>
+        </div>
+        <div class="hero-media">
+          {picture("edd-swing-creme-leather", "Man swinging a golf club in a Birdeon navy tartan polo, cream shorts and cream cap on a palm-lined course", p, lazy=False)}
         </div>
       </div>
     </section>
@@ -1109,7 +1111,9 @@ def build_home():
     for slug, cat in CATALOGUES.items():
         html += f"""
           <a class="cat-tile" href="{p}catalogues/{slug}.html">
-            {picture(cat["tile"], cat["tile_alt"], p)}
+            <div class="cat-tile-media">
+              {picture(cat["tile"], cat["tile_alt"], p)}
+            </div>
             <div class="cat-tile-body">
               <p class="eyebrow">{escape(cat["eyebrow"])}</p>
               <h3>{escape(cat["name"])}</h3>
@@ -1279,13 +1283,15 @@ def build_catalogue(slug: str):
     html += f"""
   <main id="main">
     <header class="page-hero with-image">
-      <div class="page-hero-bg">
-        {picture(cat["hero"], cat["tile_alt"], p, lazy=False)}
-      </div>
-      <div class="wrap">
-        <p class="kicker">{escape(cat["eyebrow"])}</p>
-        <h1>{escape(cat["name"])}</h1>
-        <p class="lead">{escape(cat["intro"])}</p>
+      <div class="wrap page-hero-grid">
+        <div class="page-hero-media">
+          {picture(cat["hero"], cat["tile_alt"], p, lazy=False)}
+        </div>
+        <div class="page-hero-copy">
+          <p class="kicker">{escape(cat["eyebrow"])}</p>
+          <h1>{escape(cat["name"])}</h1>
+          <p class="lead">{escape(cat["intro"])}</p>
+        </div>
       </div>
     </header>
     <section class="section">
